@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Códigos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <form id="meuFormulario">
+        <h1 class="title" id="title">Gerador de Códigos</h1>
+        <div id="display">
+          
+          <input type="text" name="matricula" id="matricula" placeholder="Matricula"> 
+          <input type="text" name="codigo" id="codigo" placeholder="Codigo de serviço">   
+          
+        
+          <button class="button" type="submit" id="bt_merge">Gerar e Copiar</button>
+          
+          <br>
+          <div class="result">
+              <p id="result"></p>
+              <!--<button  class="copy"type="enviar" id="meuBotao">Copiar</button>-->
+          </div>
+          <br>
+          <input type="file" name="arquivoExtencao" id="arquivoExtencao">
+          <button class="button" type="submit" id="bt_submit">Enviar arquivo</button>
+        </div>
+    </form>
+    <br>
+    </form>
+
+    
+</body>
+<script src="script.js"></script>
+</html>

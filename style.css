@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    border-radius: 15px;
+    width: 250px;
+    background-color: #F8F8F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    flex-wrap: wrap;
+
+}
+#display, #display1{
+    display: none;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+#meuFormulario, #relatorio{
+    width: 20rem;
+    height: 100%;
+    padding: 0% 10% 0 10%;
+    margin-bottom: 10px;
+    background-color: rgb(229 231 231 / 31%);
+    box-shadow: 1px 1px 3px rgb(167 169 169 / 74%);
+    border-radius: 15px;
+    
+}
+input{
+    height: 50px;
+    width: 100%;
+    padding: 0 0 0 15px;
+    border: none;
+    border-radius: 5px;
+    color: gray;
+    margin: 15px 0 0 0;
+    
+}
+#matricula, #codigo{
+    display: none;
+}
+.title{
+    color: #428d70;
+    padding: 10px;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+.title:active{
+    color: #53a888;
+
+}
+.button{
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    background-color: #428d70;
+    color: white;
+}
+.button:hover{
+    background-color: #285e49;
+}
+.button:active{
+    background-color: #deeee8;
+    color: #285e49;
+}
+
+#type {
+    margin: 0.4rem;
+}
+p{
+    align-self: center;
+    justify-self: center;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+.result{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    padding: 7px 0px;
+    justify-content: space-between;
+
+}
+#auto_cod{
+    display: none;
+}

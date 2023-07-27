@@ -1,0 +1,29 @@
+{
+    "name": "Gerador de Códigos - CTN",
+    "description": "Extensão criada para gerar codigos de arquivos e baixar relatórios de filiados",
+
+    "icons": {
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+      },
+
+    "author": "danilovpalacio@gmail.com",
+    "version":"0.0.3",
+    "manifest_version":3,
+
+    "content_scripts": [
+        {
+          "matches": ["https://ctn.sistematodos.com.br/paginas/filiado/PosVenda.aspx"],
+          "js": ["content.js"]
+        }
+      ],
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "index.html"
+    }
+}
