@@ -11,19 +11,18 @@
 
     "author": "danilovpalacio@gmail.com",
     "version":"0.0.3",
-    "manifest_version":3,
+    "manifest_version": 3,
 
-    "content_scripts": [
-        {
-          "matches": ["https://ctn.sistematodos.com.br/paginas/filiado/PosVenda.aspx"],
-          "js": ["content.js"]
-        }
-      ],
     "permissions": [
+        "tabs",
         "activeTab",
         "scripting"
+        
     ],
     "action": {
         "default_popup": "index.html"
-    }
+    },
+    "host_permissions": [
+        "https://ctn.sistematodos.com.br/*"
+    ]
 }

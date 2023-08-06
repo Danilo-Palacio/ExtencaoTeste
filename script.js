@@ -90,20 +90,71 @@ async function enviarMensagemAoContentScript() {
 
 */
 
+let janelaAbertaId;
+let paginaCarregada = false;
 
-// Função para enviar mensagem para o content.js com um valor adicional
-function enviarMensagemAoContentScript() {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    const mensagem = {
-      acao: "executarFuncao",
-      valorAdicional: "Este é o valor adicional que será passado"
-    };
-    chrome.tabs.sendMessage(tabs[0].id, mensagem);
-  });
-}
 
-// Adicione um ouvinte para o clique do botão da extensão
 document.getElementById("bt_submit").addEventListener('click', async(event) => {
-  event.preventDefault();
-  enviarMensagemAoContentScript();
-});
+    event.preventDefault();
+
+    await abrirNovaJanela();  
+    console.log(janelaAbertaId)
+  });
+
+  function abrirNovaJanela(){
+    return new Promise ((resolve,reject) => {
+        chrome.windows.create({
+            url:'https://ctn.sistematodos.com.br/paginas/filiado/PosVenda.aspx',
+            type: 'normal',
+            width:200,
+            height:100
+        }, function(window){
+            janelaAbertaId = window.id + 1;
+            resolve();
+        });
+        console.log("abriu a Janela")
+    })
+};
+
+
+
+document.getElementById("bt_subir").addEventListener('click', async(event) => {
+    event.preventDefault();
+    console.log('vai enviar a mensagem')
+    realizarCliqueNaJanela();
+
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, { acao: 'cliqueElemento' });
+      });
+  });
+
+  chrome.runtime.onMessage.addListener(function (resposta) {
+    if (resposta.acao === 'respostaClique') {
+      console.log('Resposta recebida do content script:', resposta.valorClicado);
+    }
+  });
+
+function realizarCliqueNaJanela() {
+    if (janelaAbertaId && paginaCarregada){
+            chrome.scripting.executeScript({
+                target:{tabId: janelaAbertaId},
+                files: ['uploadFile.js']
+            }, function() {
+                chrome.tabs.sendMessage(janelaAbertaId, { acao: 'cliqueElemento' });
+                console.log("enviou o script" + janelaAbertaId)
+             });
+        } else{
+            console.log("Não foi")
+            console.log(janelaAbertaId)
+            console.log(paginaCarregada)
+        }
+  }
+
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (tabId === janelaAbertaId && changeInfo.status === 'complete') {
+      // A página foi totalmente carregada
+      paginaCarregada = true;
+      console.log("onUpdated" + tabId + "ou" + janelaAbertaId)
+    }
+  });

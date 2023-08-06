@@ -39,3 +39,4 @@ btnBaixarRelatorio.addEventListener('click', function() {
       }
     }
 
+   
