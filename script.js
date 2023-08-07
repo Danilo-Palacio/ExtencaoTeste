@@ -1,6 +1,8 @@
 // Listener para receber a mensagem de volta após o clique
 
-let arquivoExtencao = document.getElementById('arquivoExtencao').value
+
+
+
 let valorDoElemento = "não mudou";
 
 chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
@@ -29,54 +31,100 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
       });
     });
     
+   /* setTimeout(() => {
+      console.log("VAI MUDAR O VALOR DO ARQUIVO");
+      console.log(arquivoExtencao)
+     
+      chrome.scripting.executeScript(
+          {
+              target: { tabId: guia.id },
+              func: () => {
+                  let arquivoCtn = document.getElementById("Arquivos").value;
+                  console.log("O arquivo do CTN é: " + arquivoCtn)
+                  console.log("O arquivo da extenção é: " + arquivoExtencao)
+                  if (arquivo) {
+                    arquivoCtn = arquivoExtencao;
+                    console.log("O arquivo do CTN ficou: " + arquivoCtn)
+                  }
+                  const botao = document.getElementById('ContentPlaceHolder1_btnEnviarArquivo');
+                    if (botao) {
+                        botao.click();
+                    }
+              },
+          },
+      );
+    
+    }, 500);*/
 
+ 
+
+  
+
+  /*setTimeout(() => {
+    let arquivoExtencao = document.getElementById('arquivoExtencao');
+    let valorArquivoExtencao = arquivoExtencao.value;
+    
+    console.log("VAI CLICAR PARA ENVIAR O ARQUIVO");
+    console.log("O local de arquivo é: " + valorArquivoExtencao);
+    
     chrome.scripting.executeScript(
         {
             target: { tabId: guia.id },
             func: () => {
-                document.getElementById
-                const arquivo = document.getElementById("Arquivos").value;
-                if (arquivo) {
-                    arquivo = arquivoExtencao;
-                }
+              let valorCTN = document.querySelector('#lbUsuarioLogado').value
+              valorCTN = "TESTE"
             },
+            args: [arquivoExtencao.value]
+        }
+    );
+  }, 300)*/
+    
+  setTimeout(() => {
+    console.log("VAI CLICAR PARA ENVIAR O ARQUIVO")
+    chrome.scripting.executeScript(
+        {
+            target: { tabId: guia.id },
+            func: () => {
+              document.querySelector("#lbUsuarioLogado").innerText = "TESTE2";
+            }
         },
     );
-  
-    setTimeout(() => {
-        console.log("Vai fazer o executeScript")
+  }, 500);
 
+  setTimeout(() => {
+        console.log("VAI CLICAR PARA ENVIAR O ARQUIVO")
         chrome.scripting.executeScript(
             {
                 target: { tabId: guia.id },
                 func: () => {
-                    const botao = document.getElementById('ContentPlaceHolder1_btnEnviarArquivo');
-                    if (botao) {
-                        botao.click();
+                  document.querySelector("#lbUsuarioLogado").innerText = "TESTE2";
+                  const botao = document.getElementById('ContentPlaceHolder1_btnEnviarArquivo');
+                  if (botao) {
+                      botao.click();
                     }
-                },
+                }
             },
         );
     }, 500);
 
 
-    function executeScriptPromise(tabId, code) {
-        return new Promise((resolve, reject) => {
-          chrome.scripting.executeScript(
-            {
-              target: { tabId },
-              func: code,
-            },
-            (result) => {
-              if (chrome.runtime.lastError) {
-                reject(chrome.runtime.lastError);
-              } else {
-                resolve(result);
-              }
+  function executeScriptPromise(tabId, code) {
+      return new Promise((resolve, reject) => {
+        chrome.scripting.executeScript(
+          {
+            target: { tabId },
+            func: code,
+          },
+          (result) => {
+            if (chrome.runtime.lastError) {
+              reject(chrome.runtime.lastError);
+            } else {
+              resolve(result);
             }
-          );
-        });
-      }
+          }
+        );
+      });
+    }
 
 
 
@@ -103,16 +151,16 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
           console.error('Erro ao executar o script:', error);
         }
     }, 3000);
-    setTimeout(() => {
+    /*setTimeout(() => {
         console.log("A guia será fechada")
       chrome.tabs.remove(guia.id);
-    }, 4000);
+    }, 4000);*/
   }
   
  
   document.getElementById("bt_submit").addEventListener('click', async (event) => {
     event.preventDefault();
-    manipularGuia();
+    await manipularGuia();
     console.log("finalizou");
   });
   
