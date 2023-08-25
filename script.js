@@ -56,10 +56,6 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
     
     }, 500);*/
 
- 
-
-  
-
   /*setTimeout(() => {
     let arquivoExtencao = document.getElementById('arquivoExtencao');
     let valorArquivoExtencao = arquivoExtencao.value;
@@ -79,34 +75,6 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
     );
   }, 300)*/
     
-  setTimeout(() => {
-    console.log("VAI CLICAR PARA ENVIAR O ARQUIVO")
-    chrome.scripting.executeScript(
-        {
-            target: { tabId: guia.id },
-            func: () => {
-              document.querySelector("#lbUsuarioLogado").innerText = "TESTE2";
-            }
-        },
-    );
-  }, 500);
-
-  setTimeout(() => {
-        console.log("VAI CLICAR PARA ENVIAR O ARQUIVO")
-        chrome.scripting.executeScript(
-            {
-                target: { tabId: guia.id },
-                func: () => {
-                  document.querySelector("#lbUsuarioLogado").innerText = "TESTE2";
-                  const botao = document.getElementById('ContentPlaceHolder1_btnEnviarArquivo');
-                  if (botao) {
-                      botao.click();
-                    }
-                }
-            },
-        );
-    }, 500);
-
 
   function executeScriptPromise(tabId, code) {
       return new Promise((resolve, reject) => {
@@ -125,9 +93,6 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
         );
       });
     }
-
-
-
     setTimeout(async () => {
         console.log("Vai fazer o segundo executeScript");
     
