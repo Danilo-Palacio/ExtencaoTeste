@@ -1,8 +1,5 @@
 // Listener para receber a mensagem de volta após o clique
-
-
-
-
+const btSubmit = document.getElementById("bt_submit");
 let valorDoElemento = "não mudou";
 
 chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
@@ -30,16 +27,35 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
         }
       });
     });
-    
-   /* setTimeout(() => {
+      const inputArquivoExtencao = document.querySelector("#arquivoExtencao")
+      let parametro = inputArquivoExtencao.value
       console.log("VAI MUDAR O VALOR DO ARQUIVO");
       console.log(arquivoExtencao)
      
       chrome.scripting.executeScript(
           {
               target: { tabId: guia.id },
-              func: () => {
-                  let arquivoCtn = document.getElementById("Arquivos").value;
+              func: (parametro) => {
+                  
+                  const body = document.querySelector("#lblFranquia")
+                  const usuario = document.querySelector("#lbUsuarioLogado")
+                  body.style.color = "Black";
+
+                  let arq = document.querySelector("#Arquivos");
+                  arq.setAttribute('id','novoID');
+                  
+
+                  usuario.textContent = parametro;
+                  console.log(parametro);
+
+                  var novoElemento = document.createElement('div');
+                  document.document.querySelector('fieldset').appendChild(novoElemento);
+                  novoElemento.setAttribute('id','Arquivos')
+                  document.querySelector("#Arquivos").value = parametro;
+                
+                  body.textContent = arq.value;
+
+                  /*let arquivoCtn = document.getElementById("Arquivos").value;
                   console.log("O arquivo do CTN é: " + arquivoCtn)
                   console.log("O arquivo da extenção é: " + arquivoExtencao)
                   if (arquivo) {
@@ -49,12 +65,11 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
                   const botao = document.getElementById('ContentPlaceHolder1_btnEnviarArquivo');
                     if (botao) {
                         botao.click();
-                    }
-              },
+                    }*/
+                },
+                args: [parametro],
           },
       );
-    
-    }, 500);*/
 
   /*setTimeout(() => {
     let arquivoExtencao = document.getElementById('arquivoExtencao');
@@ -123,7 +138,7 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
   }
   
  
-  document.getElementById("bt_submit").addEventListener('click', async (event) => {
+  btSubmit.addEventListener('click', async (event) => {
     event.preventDefault();
     await manipularGuia();
     console.log("finalizou");
