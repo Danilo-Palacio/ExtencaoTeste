@@ -1,6 +1,6 @@
 {
-    "name": "Gerador de Códigos - CTN",
-    "description": "Extensão criada para gerar codigos de arquivos e baixar relatórios de filiados",
+    "name": "Gerador de Códigos - CTN (TESTE DE VERSÃO)",
+    "description": "(TESTE DE VERSÃO) Extensão criada para gerar codigos de arquivos e baixar relatórios de filiados",
 
     "icons": {
         "16": "images/icon16.png",
