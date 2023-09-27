@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener(function (mensagem, sender, sendResponse) {
   
 // Função para criar e manipular a guia
 async function manipularGuia() {
-  // Passo 1: Criar uma nova guia
+// Passo 1: Criar uma nova guia
   const guia = await chrome.tabs.create({ url: 'https://ctn.sistematodos.com.br/paginas/filiado/PosVenda.aspx', active: false, index:0 });
   console.log("criou a guia")
 
@@ -155,7 +155,10 @@ btSubmit.addEventListener('click', async (event) => {
 
 
 
+function info(erro){
+  addEventListener
 
+}
 
 
 
